@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0abb7e92-3e31-441a-a2d1-85cb52193077" name="Default Changelist" comment="" />
+    <list default="true" id="0abb7e92-3e31-441a-a2d1-85cb52193077" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/compile/StringSourceCompiler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/controller/RunCodeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/ByteUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/ClassModifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/HackInputStream.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/HackPrintStream.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/HackScanner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/HackSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/HotSwapClassLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/JavaClassExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/service/ExecuteStringSourceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/WebIdeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/WebIdeApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/ServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/ServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/ServerInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/ServerInitializer.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +34,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -26,9 +48,20 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\WebIDE\src\main\resources\static" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\WebIDE\src\main\resources" />
+      <recent name="E:\WebIDE\src\main\java\cn\codeyourlife" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -63,11 +96,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1578489428831</updated>
-      <workItem from="1578489431338" duration="3448000" />
+      <workItem from="1578489431338" duration="4944000" />
+      <workItem from="1578496876602" duration="3595000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/ServerHandler.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

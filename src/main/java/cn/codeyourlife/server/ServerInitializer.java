@@ -7,6 +7,12 @@ import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.ssl.SslContext;
 
+/**
+ * Author: wbq813@foxmail.com
+ * Copyright: http://codeyourlife.cn
+ * Platform: Win10 Jdk8
+ * Date: 2020/1/8
+ */
 public class ServerInitializer extends ChannelInitializer<SocketChannel> {
 
     private final SslContext sslCtx;
@@ -21,8 +27,11 @@ public class ServerInitializer extends ChannelInitializer<SocketChannel> {
         if (sslCtx != null) {
             p.addLast(sslCtx.newHandler(ch.alloc()));
         }
-        p.addLast(new HttpServerCodec());/*HTTP 服务的解码器*/
-        p.addLast(new HttpObjectAggregator(2048));/*HTTP 消息的合并处理*/
-        p.addLast(new ServerHandler()); /*自己写的服务器逻辑处理*/
+        /*HTTP 服务的解码器*/
+        p.addLast(new HttpServerCodec());
+        /*HTTP 消息的合并处理*/
+        p.addLast(new HttpObjectAggregator(2048));
+        /*自己写的服务器逻辑处理*/
+        p.addLast(new ServerHandler());
     }
 }

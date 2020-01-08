@@ -15,9 +15,10 @@ import io.netty.handler.ssl.util.SelfSignedCertificate;
 
 
 /**
- * 服务的主入口
- *
- * @author superzhan
+ * Author: wbq813@foxmail.com
+ * Copyright: http://codeyourlife.cn
+ * Platform: Win10 Jdk8
+ * Date: 2020/1/8
  */
 public final class WebIdeApplication {
 
