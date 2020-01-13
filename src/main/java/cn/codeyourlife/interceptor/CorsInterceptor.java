@@ -1,6 +1,6 @@
 package cn.codeyourlife.interceptor;
 
-import cn.codeyourlife.server.HttpResponse;
+import cn.codeyourlife.server.io.HttpResponse;
 import cn.codeyourlife.server.interceptor.Interceptor;
 import io.netty.handler.codec.http.FullHttpRequest;
 

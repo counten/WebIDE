@@ -2,6 +2,9 @@ package cn.codeyourlife.server;
 
 import cn.codeyourlife.server.interceptor.Interceptor;
 import cn.codeyourlife.server.interceptor.InterceptorRegistry;
+import cn.codeyourlife.server.io.HttpResponse;
+import cn.codeyourlife.server.io.MultipartFile;
+import cn.codeyourlife.server.io.RequestInfo;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -36,7 +39,7 @@ public class RequestDispatcher {
      * @throws Exception
      */
     public void doDispatch(FullHttpRequest request, ChannelHandlerContext channelHandlerContext) throws Exception {
-        HttpResponse response = new HttpResponse(channelHandlerContext);
+        cn.codeyourlife.server.io.HttpResponse response = new cn.codeyourlife.server.io.HttpResponse(channelHandlerContext);
 
         // 执行拦截器
         java.util.Stack<Interceptor> executedInterceptors = new java.util.Stack<Interceptor>();

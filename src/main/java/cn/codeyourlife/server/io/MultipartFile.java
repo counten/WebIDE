@@ -1,4 +1,4 @@
-package cn.codeyourlife.server;
+package cn.codeyourlife.server.io;
 
 import java.util.Arrays;
 

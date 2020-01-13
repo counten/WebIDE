@@ -1,8 +1,7 @@
 package cn.codeyourlife.controller;
 
-import cn.codeyourlife.server.ResponseEntity;
+import cn.codeyourlife.server.io.ResponseEntity;
 import cn.codeyourlife.server.annotation.GetMapping;
-import cn.codeyourlife.server.annotation.JsonResponse;
 import cn.codeyourlife.server.annotation.RequestMapping;
 import cn.codeyourlife.server.annotation.RestController;
 

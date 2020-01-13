@@ -1,4 +1,4 @@
-package cn.codeyourlife.server;
+package cn.codeyourlife.server.io;
 
 /**
  * Http 状态枚举

@@ -1,5 +1,6 @@
 package cn.codeyourlife.server;
 
+import cn.codeyourlife.server.controller.ControllerFactory;
 import cn.codeyourlife.server.controller.ExceptionHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;

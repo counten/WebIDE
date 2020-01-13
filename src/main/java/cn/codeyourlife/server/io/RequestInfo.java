@@ -1,7 +1,6 @@
-package cn.codeyourlife.server;
+package cn.codeyourlife.server.io;
 
 import io.netty.handler.codec.http.FullHttpRequest;
-import cn.codeyourlife.server.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.HashMap;

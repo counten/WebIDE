@@ -5,7 +5,7 @@ import cn.codeyourlife.server.router.ControllerMappingParameter;
 import cn.codeyourlife.server.router.ControllerMappingParameterTypeEnum;
 import io.netty.handler.codec.http.FullHttpRequest;
 import cn.codeyourlife.server.annotation.*;
-import cn.codeyourlife.server.HttpResponse;
+import cn.codeyourlife.server.io.HttpResponse;
 import org.objectweb.asm.*;
 
 import java.io.IOException;

@@ -1,5 +1,6 @@
 package cn.codeyourlife.server;
 
+import cn.codeyourlife.server.io.HttpResponse;
 import io.netty.handler.codec.http.FullHttpRequest;
 
 /**

@@ -1,7 +1,7 @@
 package cn.codeyourlife.server.interceptor;
 
 import io.netty.handler.codec.http.FullHttpRequest;
-import cn.codeyourlife.server.HttpResponse;
+import cn.codeyourlife.server.io.HttpResponse;
 
 /**
  * 拦截器接口

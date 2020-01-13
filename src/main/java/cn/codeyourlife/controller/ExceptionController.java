@@ -1,8 +1,8 @@
 package cn.codeyourlife.controller;
 
 import cn.codeyourlife.server.HttpContextHolder;
-import cn.codeyourlife.server.HttpResponse;
-import cn.codeyourlife.server.HttpStatus;
+import cn.codeyourlife.server.io.HttpResponse;
+import cn.codeyourlife.server.io.HttpStatus;
 import cn.codeyourlife.server.controller.ExceptionHandler;
 import cn.codeyourlife.server.exception.ResourceNotFoundException;
 

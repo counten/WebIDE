@@ -1,4 +1,4 @@
-package cn.codeyourlife.server;
+package cn.codeyourlife.server.controller;
 
 import cn.codeyourlife.server.annotation.*;
 import cn.codeyourlife.server.methods.*;
