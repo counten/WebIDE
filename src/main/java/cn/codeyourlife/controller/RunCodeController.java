@@ -1,9 +1,9 @@
 package cn.codeyourlife.controller;
 
+import cn.codeyourlife.server.annotation.*;
 import cn.codeyourlife.server.io.ResponseEntity;
-import cn.codeyourlife.server.annotation.GetMapping;
-import cn.codeyourlife.server.annotation.RequestMapping;
-import cn.codeyourlife.server.annotation.RestController;
+import cn.codeyourlife.service.ExecuteStringSourceService;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * Author: wbq813@foxmail.com
@@ -15,6 +15,7 @@ import cn.codeyourlife.server.annotation.RestController;
 @RestController
 @RequestMapping("/ide")
 public class RunCodeController {
+    public ExecuteStringSourceService executeStringSourceService = new ExecuteStringSourceService();
     private static final String defaultSource = "public class Run {\n"
             + "    public static void main(String[] args) {\n"
             + "        \n"
@@ -26,19 +27,29 @@ public class RunCodeController {
         return ResponseEntity.ok().build("hello world");
     }
 
-//    public String entry(Model model) {
-//        model.addAttribute("lastSource", defaultSource);
-//        return "ide";
-//    }
-//
-//    public String runCode(@RequestParam("source") String source,
-//                          @RequestParam("systemIn") String systemIn, Model model) {
-//        String runResult = executeStringSourceService.execute(source, systemIn);
-//        runResult = runResult.replaceAll(System.lineSeparator(), "<br/>"); // 处理html中换行的问题
-//
-//        model.addAttribute("lastSource", source);
-//        model.addAttribute("lastSystemIn", systemIn);
-//        model.addAttribute("runResult", runResult);
-//        return "ide";
-//    }
+
+    @GetMapping("/lastSource")
+    public ResponseEntity<?> lastSource() {
+        JSONObject res = new JSONObject();
+        res.put("lastSource", defaultSource);
+        return ResponseEntity.ok().build(res);
+    }
+
+    @PostMapping("/run")
+    public ResponseEntity<?> runCode(@RequestBody String body) {
+        JSONObject json = JSONObject.parseObject(body);
+        // source code
+        String source = json.getString("source");
+        // standard in;
+        String systemIn = json.getString("systemIn");
+        String runResult = executeStringSourceService.execute(source, systemIn);
+        // 处理html中换行的问题
+        runResult = runResult.replaceAll(System.lineSeparator(), "<br/>");
+
+        JSONObject res = new JSONObject();
+        res.put("lastSource", source);
+        res.put("lastSystemIn", systemIn);
+        res.put("runResult", runResult);
+        return ResponseEntity.ok().build(res);
+    }
 }

@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a97fb544-57f5-4a15-870f-0de9b9aae7d7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/io/FileAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/HttpRequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/HttpRequestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/RequestDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/RequestDispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/server/RequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/controller/RunCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/controller/RunCodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/service/ExecuteStringSourceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/service/ExecuteStringSourceService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +94,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1578882265176</updated>
-      <workItem from="1578882268044" duration="14137000" />
+      <workItem from="1578882268044" duration="16937000" />
     </task>
     <task id="LOCAL-00001" summary="[Update] 更新netty的使用">
       <created>1578896064173</created>
@@ -112,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578896362288</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="[Update] 增加静态文件处理">
+      <created>1578902600455</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1578902600455</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,7 +139,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="[Update] 更新netty的使用" />
     <MESSAGE value="[Update] 调整结构" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Update] 调整结构" />
+    <MESSAGE value="[Update] 增加静态文件处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Update] 增加静态文件处理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

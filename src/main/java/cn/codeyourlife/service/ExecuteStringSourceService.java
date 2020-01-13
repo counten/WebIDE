@@ -25,7 +25,8 @@ public class ExecuteStringSourceService {
     private static final String NO_OUTPUT = "Nothing.";
 
     public String execute(String source, String systemIn) {
-        DiagnosticCollector<JavaFileObject> compileCollector = new DiagnosticCollector<>(); // 编译结果收集器
+        // 编译结果收集器
+        DiagnosticCollector<JavaFileObject> compileCollector = new DiagnosticCollector<>();
 
         // 编译源代码
         byte[] classBytes = StringSourceCompiler.compile(source, compileCollector);
