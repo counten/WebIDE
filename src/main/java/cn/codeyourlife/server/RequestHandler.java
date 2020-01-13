@@ -207,7 +207,7 @@ public class RequestHandler {
      * @return
      * @throws IOException
      */
-    private ChannelFuture writeFileResponse(ResponseEntity<?> responseEntity) throws IOException {
+    public static ChannelFuture writeFileResponse(ResponseEntity<?> responseEntity) throws IOException {
         RandomAccessFile raf = (RandomAccessFile) responseEntity.getBody();
         long fileLength = raf.length();
 

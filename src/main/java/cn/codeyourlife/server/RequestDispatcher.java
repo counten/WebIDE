@@ -2,6 +2,7 @@ package cn.codeyourlife.server;
 
 import cn.codeyourlife.server.interceptor.Interceptor;
 import cn.codeyourlife.server.interceptor.InterceptorRegistry;
+import cn.codeyourlife.server.io.FileAccess;
 import cn.codeyourlife.server.io.HttpResponse;
 import cn.codeyourlife.server.io.MultipartFile;
 import cn.codeyourlife.server.io.RequestInfo;
@@ -33,6 +34,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 public class RequestDispatcher {
     /**
      * 执行请求分派
+     * 不返回参数，执行结果存储于request中
      *
      * @param request
      * @param channelHandlerContext
@@ -62,67 +64,75 @@ public class RequestDispatcher {
             f = processOptionsRequest(request, response, channelHandlerContext);
         }
 
+        // Not OPTION method
         if (!request.method().name().equalsIgnoreCase("OPTIONS")) {
-            RequestInfo requestInfo = new RequestInfo();
-            requestInfo.setRequest(request);
-            requestInfo.setResponse(response);
-            QueryStringDecoder queryStrdecoder = new QueryStringDecoder(request.uri());
-            Set<Map.Entry<String, List<String>>> entrySet = queryStrdecoder.parameters().entrySet();
-            entrySet.forEach(entry -> {
-                requestInfo.getParameters().put(entry.getKey(), entry.getValue().get(0));
-            });
-
-            Set<String> headerNames = request.headers().names();
-            for (String headerName : headerNames) {
-                requestInfo.getHeaders().put(headerName, request.headers().get(headerName));
+            if (FileAccess.accessFile(request, channelHandlerContext)){
+                // 静态资源
+                return;
             }
+            else {
+                RequestInfo requestInfo = new RequestInfo();
+                requestInfo.setRequest(request);
+                requestInfo.setResponse(response);
+                QueryStringDecoder queryStrdecoder = new QueryStringDecoder(request.uri());
+                Set<Map.Entry<String, List<String>>> entrySet = queryStrdecoder.parameters().entrySet();
+                entrySet.forEach(entry -> {
+                    requestInfo.getParameters().put(entry.getKey(), entry.getValue().get(0));
+                });
 
-            if (!request.method().name().equalsIgnoreCase("GET")) {
-                String contentType = requestInfo.getHeaders().get("Content-Type");
-                if (contentType != null) {
-                    if (contentType.contains(";")) {
-                        contentType = contentType.split(";")[0];
-                    }
-                    switch (contentType.toLowerCase()) {
-                        case "application/json":
-                        case "application/json;charset=utf-8":
-                        case "text/xml":
-                            requestInfo.setBody(request.content().toString(Charset.forName("UTF-8")));
-                            break;
-                        case "application/x-www-form-urlencoded":
-                            HttpPostRequestDecoder formDecoder = new HttpPostRequestDecoder(request);
-                            formDecoder.offer(request);
-                            List<InterfaceHttpData> parmList = formDecoder.getBodyHttpDatas();
-                            for (InterfaceHttpData parm : parmList) {
-                                Attribute data = (Attribute) parm;
-                                requestInfo.getFormData().put(data.getName(), data.getValue());
-                            }
-                            break;
-                        case "multipart/form-data":
-                            HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(request);
-                            List<InterfaceHttpData> datas = decoder.getBodyHttpDatas();
-                            for (InterfaceHttpData data : datas) {
-                                if (data.getHttpDataType() == InterfaceHttpData.HttpDataType.FileUpload) {
-                                    FileUpload fileUpload = (FileUpload) data;
-                                    if (fileUpload.isCompleted()) {
-                                        MultipartFile file = new MultipartFile();
-                                        file.setFileName(fileUpload.getFilename());
-                                        file.setFileType(fileUpload.getContentType());
-                                        file.setFileData(fileUpload.get());
-                                        requestInfo.getFiles().add(file);
+                Set<String> headerNames = request.headers().names();
+                for (String headerName : headerNames) {
+                    requestInfo.getHeaders().put(headerName, request.headers().get(headerName));
+                }
+
+                // Not GET method
+                if (!request.method().name().equalsIgnoreCase("GET")) {
+                    String contentType = requestInfo.getHeaders().get("Content-Type");
+                    if (contentType != null) {
+                        if (contentType.contains(";")) {
+                            contentType = contentType.split(";")[0];
+                        }
+                        switch (contentType.toLowerCase()) {
+                            case "application/json":
+                            case "application/json;charset=utf-8":
+                            case "text/xml":
+                                requestInfo.setBody(request.content().toString(Charset.forName("UTF-8")));
+                                break;
+                            case "application/x-www-form-urlencoded":
+                                HttpPostRequestDecoder formDecoder = new HttpPostRequestDecoder(request);
+                                formDecoder.offer(request);
+                                List<InterfaceHttpData> parmList = formDecoder.getBodyHttpDatas();
+                                for (InterfaceHttpData parm : parmList) {
+                                    Attribute data = (Attribute) parm;
+                                    requestInfo.getFormData().put(data.getName(), data.getValue());
+                                }
+                                break;
+                            case "multipart/form-data":
+                                HttpPostRequestDecoder decoder = new HttpPostRequestDecoder(request);
+                                List<InterfaceHttpData> datas = decoder.getBodyHttpDatas();
+                                for (InterfaceHttpData data : datas) {
+                                    if (data.getHttpDataType() == InterfaceHttpData.HttpDataType.FileUpload) {
+                                        FileUpload fileUpload = (FileUpload) data;
+                                        if (fileUpload.isCompleted()) {
+                                            MultipartFile file = new MultipartFile();
+                                            file.setFileName(fileUpload.getFilename());
+                                            file.setFileType(fileUpload.getContentType());
+                                            file.setFileData(fileUpload.get());
+                                            requestInfo.getFiles().add(file);
+                                        }
+                                        continue;
                                     }
-                                    continue;
+                                    if (data.getHttpDataType() == InterfaceHttpData.HttpDataType.Attribute) {
+                                        Attribute attribute = (Attribute) data;
+                                        requestInfo.getFormData().put(attribute.getName(), attribute.getValue());
+                                    }
                                 }
-                                if (data.getHttpDataType() == InterfaceHttpData.HttpDataType.Attribute) {
-                                    Attribute attribute = (Attribute) data;
-                                    requestInfo.getFormData().put(attribute.getName(), attribute.getValue());
-                                }
-                            }
+                        }
                     }
                 }
-            }
 
-            f = new RequestHandler().handleRequest(requestInfo);
+                f = new RequestHandler().handleRequest(requestInfo);
+            }
         }
 
         // 执行拦截器
