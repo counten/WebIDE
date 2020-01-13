@@ -9,6 +9,8 @@
         <module name="WebIDE" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="8">
+      <module name="WebIDE" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,17 +1,31 @@
 package cn.codeyourlife.controller;
 
+import cn.codeyourlife.server.ResponseEntity;
+import cn.codeyourlife.server.annotation.GetMapping;
+import cn.codeyourlife.server.annotation.JsonResponse;
+import cn.codeyourlife.server.annotation.RequestMapping;
+import cn.codeyourlife.server.annotation.RestController;
+
 /**
  * Author: wbq813@foxmail.com
  * Copyright: http://codeyourlife.cn
  * Platform: Win10 Jdk8
  * Date: 2020/1/8
  */
+
+@RestController
+@RequestMapping("/ide")
 public class RunCodeController {
     private static final String defaultSource = "public class Run {\n"
             + "    public static void main(String[] args) {\n"
             + "        \n"
             + "    }\n"
             + "}";
+
+    @GetMapping("")
+    public ResponseEntity<?> hello() {
+        return ResponseEntity.ok().build("hello world");
+    }
 
 //    public String entry(Model model) {
 //        model.addAttribute("lastSource", defaultSource);
