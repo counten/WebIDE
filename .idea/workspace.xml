@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a97fb544-57f5-4a15-870f-0de9b9aae7d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/controller/RunCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/controller/RunCodeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/pic/项目展示.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/pic/项目展示_update_20190430.gif" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +97,7 @@
       <updated>1578882265176</updated>
       <workItem from="1578882268044" duration="16976000" />
       <workItem from="1578921991411" duration="8314000" />
-      <workItem from="1579055586361" duration="10809000" />
+      <workItem from="1579055586361" duration="11201000" />
     </task>
     <task id="LOCAL-00001" summary="[Update] 更新netty的使用">
       <created>1578896064173</created>
@@ -140,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579061740377</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="[Fix] 使用Vue完成前端对的对接">
+      <created>1579070268976</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1579070268976</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,16 +176,12 @@
     <MESSAGE value="[Update] 接口" />
     <MESSAGE value="[Fix] 修复无法访问页面的问题" />
     <MESSAGE value="[Add] 使用Vue实现前端页面" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Add] 使用Vue实现前端页面" />
+    <MESSAGE value="[Fix] 使用Vue完成前端对的对接" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Fix] 使用Vue完成前端对的对接" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/codeyourlife/controller/RunCodeController.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cn/codeyourlife/compile/StringSourceCompiler.java</url>
           <line>20</line>
