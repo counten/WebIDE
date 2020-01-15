@@ -6,9 +6,6 @@
 
 
 ## TODO
-1. 基于注解实现类似spring的controller的注解；
-1. 类似SpringBoot的Application启动接口。
-1. 系统运行日志
 1. 完善页面
 
 #### 运行效果

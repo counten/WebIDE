@@ -1,5 +1,6 @@
 package cn.codeyourlife.server;
 
+import cn.codeyourlife.server.io.FileAccess;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.FullHttpRequest;
@@ -8,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Http 请求处理器
- *
+ * <p>
  * Author: wbq813@foxmail.com
  * Copyright: http://codeyourlife.cn
  * Platform: Win10 Jdk8
@@ -31,10 +32,12 @@ final class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpReque
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest request) throws Exception {
-        if(WebServer.getIgnoreUrls().contains(request.uri())) {
+        if (WebServer.getIgnoreUrls().contains(request.uri())) {
             return;
         }
-        new RequestDispatcher().doDispatch(request, ctx);
+        if (!FileAccess.accessFile(request, ctx)) {
+            new RequestDispatcher().doDispatch(request, ctx);
+        }
     }
 
 }

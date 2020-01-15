@@ -6,6 +6,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
+import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
@@ -16,38 +17,38 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Netty Handler 初始化类
- * 
+ *
  * @author Leo
  * @date 2018/3/29
  */
 final class HandlerInitializer extends ChannelInitializer<SocketChannel> {
-    
+
     private int maxContentLength = 0;
-    
+
     /**
      * 业务线程池线程数
      * 可通过 -Dhttp.executor.threads 设置
      */
     private static int eventExecutorGroupThreads = 0;
-    
+
     /**
      * 业务线程池队列长度
      * 可通过 -Dhttp.executor.queues 设置
      */
     private static int eventExecutorGroupQueues = 0;
-    
+
     static {
         eventExecutorGroupThreads = Integer.getInteger("http.executor.threads", 0);
         if(eventExecutorGroupThreads == 0) {
             eventExecutorGroupThreads = Runtime.getRuntime().availableProcessors() * 2;
         }
-        
+
         eventExecutorGroupQueues = Integer.getInteger("http.executor.queues", 0);
         if(eventExecutorGroupQueues == 0) {
             eventExecutorGroupQueues = 1024;
         }
     }
-    
+
     /**
      * 业务线程组
      */
@@ -59,11 +60,11 @@ final class HandlerInitializer extends ChannelInitializer<SocketChannel> {
                     return new Thread(r, "HttpRequestHandlerThread_" + this.threadIndex.incrementAndGet());
                 }
             }, eventExecutorGroupQueues, RejectedExecutionHandlers.reject());
-    
+
     public HandlerInitializer(int maxContentLength) {
         this.maxContentLength = maxContentLength;
     }
-    
+
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         /*
@@ -76,15 +77,24 @@ final class HandlerInitializer extends ChannelInitializer<SocketChannel> {
          * 3、ChannelOutboundHandler 在注册的时候需要放在最后一个ChannelInboundHandler之前，否则将无法传递到ChannelOutboundHandler。
          * 4、Handler的消费处理放在最后一个处理。
          */
+//        ChannelPipeline pipeline = ch.pipeline();
+//        pipeline.addLast("decoder", new HttpRequestDecoder());
+//        pipeline.addLast("aggregator", new HttpObjectAggregator(maxContentLength));
+//        pipeline.addLast("encoder", new HttpResponseEncoder());
+//        // 启用gzip（由于使用本地存储文件，不能启用gzip）
+//        //pipeline.addLast(new HttpContentCompressor(1));
+//        pipeline.addLast(new ChunkedWriteHandler());
+//        // 将HttpRequestHandler放在业务线程池中执行，避免阻塞worker线程。
+//        pipeline.addLast(eventExecutorGroup, "httpRequestHandler", new HttpRequestHandler());
+
         ChannelPipeline pipeline = ch.pipeline();
-        pipeline.addLast("decoder", new HttpRequestDecoder());
-        pipeline.addLast("aggregator", new HttpObjectAggregator(maxContentLength));
-        pipeline.addLast("encoder", new HttpResponseEncoder());
-        // 启用gzip（由于使用本地存储文件，不能启用gzip）
-        //pipeline.addLast(new HttpContentCompressor(1));
+        //将请求和应答消息编码或解码为HTTP消息
+        pipeline.addLast(new HttpServerCodec());
+        //将HTTP消息的多个部分组合成一条完整的HTTP消息
+        pipeline.addLast(new HttpObjectAggregator(64 * 1024));
         pipeline.addLast(new ChunkedWriteHandler());
-        // 将HttpRequestHandler放在业务线程池中执行，避免阻塞worker线程。
-        pipeline.addLast(eventExecutorGroup, "httpRequestHandler", new HttpRequestHandler());
+        // TODO 这里使用线程组时无法访问页面
+        pipeline.addLast(new HttpRequestHandler());
     }
 
 }
