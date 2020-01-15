@@ -1,64 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ch">
 <head>
     <meta charset="UTF-8">
     <title>JDE</title>
-    <link href="https://cdn.bootcss.com/bttn.css/0.2.4/bttn.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/bulma/0.7.4/css/bulma.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
-
-<div style="width:100%;text-align:center">
-<form action="/run" method="post">
-    <div class="control" style="width:70%;margin: 10px auto">
-        <textarea class="textarea is-success" id="myInput" name="source" rows="15" cols="180">${lastSource!}</textarea>
-    </div>
-    <div class="control" style="width:70%;margin: 10px auto">
-        <textarea class="textarea is-success" id="mySystemIn" name="systemIn" rows="4" cols="180" placeholder="System Input! 目前仅支持 new Scanner(System.in) 读取标准输入.">${lastSystemIn!}</textarea>
-    </div>
-    <input class="bttn-simple bttn-md bttn-primary" type="submit" value="Run" />
-    <script type="text/javascript">
-        var myInput = document.getElementById("myInput");
-        str = "    ";
-        if(myInput.addEventListener ) {
-            myInput.addEventListener('keydown',this.keyHandler,false);
-        } else if(myInput.attachEvent ) {
-            myInput.attachEvent('onkeydown',this.keyHandler); /* damn IE hack */
-        }
-
-        function keyHandler(e) {
-            var TABKEY = 9;
-            if(e.keyCode == TABKEY) {
-                insertText(myInput,str);
-                if(e.preventDefault) {
-                    e.preventDefault();
-                }
-            }
-        }
-        function insertText(obj,str) {
-            if (document.selection) {
-                var sel = document.selection.createRange();
-                sel.text = str;
-            } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
-                var startPos = obj.selectionStart,
-                    endPos = obj.selectionEnd,
-                    cursorPos = startPos,
-                    tmpStr = obj.value;
-                obj.value = tmpStr.substring(0, startPos) + str + tmpStr.substring(endPos, tmpStr.length);
-                cursorPos += str.length;
-                obj.selectionStart = obj.selectionEnd = cursorPos;
-            } else {
-                obj.value += str;
-            }
-        }
-    </script>
-</form>
+<div id="app">
+    <el-container>
+        <el-header>
+            <el-row>
+                <el-col :span="4"><div class="grid-content bg-purple">
+                    <a href="http://codeyourlife.cn">编码人生</a> Java Online IDE
+                </div></el-col>
+                <el-col :span="20"><div class="grid-content bg-purple-light">
+                    <!--    提交按钮-->
+                    <el-button type="success" :loading="true">运行</el-button>
+                </div></el-col>
+            </el-row>
+        </el-header>
+        <el-container>
+            <el-main>
+                <!--    代码框-->
+                <el-input
+                        type="textarea"
+                        :rows="20"
+                        placeholder="请输入内容"
+                        v-model="sourceCode">
+                </el-input>
+                <!--    返回结果-->
+                <el-input
+                        type="textarea"
+                        :rows="5"
+                        placeholder="请输入内容"
+                        v-model="result">
+                </el-input>
+            </el-main>
+            <el-main>
+                <!--    标准输入-->
+                <el-input
+                        type="textarea"
+                        :rows="28"
+                        placeholder="请输入内容"
+                        v-model="stdIO">
+                </el-input>
+            </el-main>
+        </el-container>
+    </el-container>
 </div>
-
-
-
-<div id="showRunResult" style="border:1px solid; padding: 3px; width:70%; margin-top:10px;
-position:absolute;left:50%;transform:translate(-50%);">${runResult!}</div>
-
 </body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            sourceCode: 'Hello Vue!',
+            stdIO: "stdIO",
+            result: "result"
+        }
+    })
+</script>
+<style>
+    .el-header, .el-footer {
+        background-color: #B3C0D1;
+        color: #333;
+        text-align: center;
+        line-height: 60px;
+    }
+
+    .el-aside {
+        background-color: #E9EEF3;
+        color: #333;
+        text-align: center;
+        line-height: 160px;
+    }
+
+    .el-main {
+        background-color: #E9EEF3;
+        color: #333;
+        text-align: center;
+        line-height: 160px;
+    }
+
+    body > .el-container {
+        margin-bottom: 40px;
+    }
+
+    .el-container:nth-child(5) .el-aside,
+    .el-container:nth-child(6) .el-aside {
+        line-height: 260px;
+    }
+
+    .el-container:nth-child(7) .el-aside {
+        line-height: 320px;
+    }
+</style>
 </html>
