@@ -2,8 +2,9 @@
 <html lang="ch">
 <head>
     <meta charset="UTF-8">
-    <title>JDE</title>
+    <title>Java Online IDE(CodeYourLife)</title>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!-- 引入组件库 -->
@@ -14,13 +15,17 @@
     <el-container>
         <el-header>
             <el-row>
-                <el-col :span="4"><div class="grid-content bg-purple">
-                    <a href="http://codeyourlife.cn">编码人生</a> Java Online IDE
-                </div></el-col>
-                <el-col :span="20"><div class="grid-content bg-purple-light">
-                    <!--    提交按钮-->
-                    <el-button type="success" :loading="true">运行</el-button>
-                </div></el-col>
+                <el-col :span="4">
+                    <div class="grid-content bg-purple">
+                        <a href="http://codeyourlife.cn">编码人生</a> Java Online IDE
+                    </div>
+                </el-col>
+                <el-col :span="20">
+                    <div class="grid-content bg-purple-light">
+                        <!--    提交按钮  :loading="true" -->
+                        <el-button type="success" @click="runCode()">运行</el-button>
+                    </div>
+                </el-col>
             </el-row>
         </el-header>
         <el-container>
@@ -36,7 +41,7 @@
                 <el-input
                         type="textarea"
                         :rows="5"
-                        placeholder="请输入内容"
+                        placeholder="那一刻我会觉得自己是切开的木头年轮中的某一个环，拥挤得那么心安。"
                         v-model="result">
                 </el-input>
             </el-main>
@@ -54,14 +59,29 @@
 </div>
 </body>
 <script>
+
     var app = new Vue({
         el: '#app',
         data: {
-            sourceCode: 'Hello Vue!',
-            stdIO: "stdIO",
-            result: "result"
+            sourceCode: 'public class Run {\n' +
+                '    public static void main(String[] args) {\n' +
+                '        System.out.println("http://codeyourlife.cn");\n' +
+                '    }\n' +
+                '}',
+            stdIO: '',
+            result: ''
+        },
+        methods: {
+            runCode: function () {
+                axios.post('ide/run', {
+                    source: this.sourceCode,
+                    systemIn: this.stdIO
+                }).then(response => {
+                    this.result = response.data.runResult
+                })
+            }
         }
-    })
+    });
 </script>
 <style>
     .el-header, .el-footer {

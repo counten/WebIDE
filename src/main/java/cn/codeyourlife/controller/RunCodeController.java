@@ -16,24 +16,6 @@ import com.alibaba.fastjson.JSONObject;
 @RequestMapping("/ide")
 public class RunCodeController {
     public ExecuteStringSourceService executeStringSourceService = new ExecuteStringSourceService();
-    private static final String defaultSource = "public class Run {\n"
-            + "    public static void main(String[] args) {\n"
-            + "        \n"
-            + "    }\n"
-            + "}";
-
-    @GetMapping("")
-    public ResponseEntity<?> hello() {
-        return ResponseEntity.ok().build("hello world");
-    }
-
-
-    @GetMapping("/lastSource")
-    public ResponseEntity<?> lastSource() {
-        JSONObject res = new JSONObject();
-        res.put("lastSource", defaultSource);
-        return ResponseEntity.ok().build(res);
-    }
 
     @PostMapping("/run")
     public ResponseEntity<?> runCode(@RequestBody String body) {
@@ -44,7 +26,7 @@ public class RunCodeController {
         String systemIn = json.getString("systemIn");
         String runResult = executeStringSourceService.execute(source, systemIn);
         // 处理html中换行的问题
-        runResult = runResult.replaceAll(System.lineSeparator(), "<br/>");
+        runResult = runResult.replaceAll(System.lineSeparator(), "\n");
 
         JSONObject res = new JSONObject();
         res.put("lastSource", source);
