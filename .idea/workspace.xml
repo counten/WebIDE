@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a97fb544-57f5-4a15-870f-0de9b9aae7d7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/doc/ClassFile.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/Reflec&amp;Introspector.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/pic/class_code.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/pic/constant_data_type.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pic/项目展示.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pic/项目展示_update_20190430.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/01-动态编译.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/01-动态编译.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/ClassModifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/ClassModifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/JavaClassExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/JavaClassExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/service/ExecuteStringSourceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/codeyourlife/service/ExecuteStringSourceService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +103,11 @@
       <updated>1578882265176</updated>
       <workItem from="1578882268044" duration="16976000" />
       <workItem from="1578921991411" duration="8314000" />
-      <workItem from="1579055586361" duration="11201000" />
+      <workItem from="1579055586361" duration="12704000" />
+      <workItem from="1580282747570" duration="1277000" />
+      <workItem from="1580386103143" duration="1772000" />
+      <workItem from="1580518832802" duration="2821000" />
+      <workItem from="1580889288606" duration="8019000" />
     </task>
     <task id="LOCAL-00001" summary="[Update] 更新netty的使用">
       <created>1578896064173</created>
@@ -148,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579070268976</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="[Fix] 使用Vue完成前端对的对接">
+      <created>1579070751796</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1579070751796</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,6 +208,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/JavaClassExecutor.java</url>
           <line>22</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cn/codeyourlife/execute/ClassModifier.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

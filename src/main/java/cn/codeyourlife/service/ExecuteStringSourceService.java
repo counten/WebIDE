@@ -46,12 +46,7 @@ public class ExecuteStringSourceService {
         }
 
         // 运行字节码的main方法
-        Callable<String> runTask = new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                return JavaClassExecutor.execute(classBytes, systemIn);
-            }
-        };
+        Callable<String> runTask = () -> JavaClassExecutor.execute(classBytes, systemIn);
 
         Future<String> res = null;
         try {

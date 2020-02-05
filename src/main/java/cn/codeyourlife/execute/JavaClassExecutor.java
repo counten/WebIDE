@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
  * 1. 清空HackSystem中的缓存
  * 2. new ClassModifier，并传入需要被修改的字节数组
  * 3. 调用ClassModifier#modifyUTF8Constant修改：
- *      java/lang/System -> com/jvm/ch9/remoteinvoke/HackSystem
+ *      java/lang/System -> HackSystem
  * 4. new一个类加载器，把字节数组加载为Class对象
  * 5. 通过反射调用Class对象的main方法
  * 6. 从HackSystem中获取返回结果
@@ -35,7 +35,8 @@ public class JavaClassExecutor {
 
         // 5. 通过反射调用Class对象的main方法
         try {
-            Method mainMethod = clazz.getMethod("main", new Class[] { String[].class });
+            // main 函数的参数类型时String类型
+            Method mainMethod = clazz.getMethod("main", String[].class);
             mainMethod.invoke(null, new String[] { null });
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
