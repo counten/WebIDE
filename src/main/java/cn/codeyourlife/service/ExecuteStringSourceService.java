@@ -1,6 +1,7 @@
 package cn.codeyourlife.service;
 
 import cn.codeyourlife.compile.StringSourceCompiler;
+import cn.codeyourlife.execute.CustomThreadFactory;
 import cn.codeyourlife.execute.JavaClassExecutor;
 
 
@@ -17,9 +18,14 @@ public class ExecuteStringSourceService {
     /* N_THREAD = N_CPU + 1，因为是 CPU 密集型的操作 */
     private static final int N_THREAD = 5;
 
-    /* 负责执行客户端代码的线程池，根据《Java 开发手册》不可用 Executor 创建，有 OOM 的可能 */
-    private static final ExecutorService pool = new ThreadPoolExecutor(N_THREAD, N_THREAD,
-            0L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(N_THREAD));
+    private static final String THREAD_NAME_PREFIX = "CylProgramRunner_";
+
+    // 不使用Executors 其提供的很多方法默认使用的都是无界的 LinkedBlockingQueue，
+    // 高负载情境下，无界队列很容易导致 OOM，而 OOM 会导致所有请求都无法处理
+    private static final ExecutorService pool = new ThreadPoolExecutor(
+            N_THREAD, N_THREAD, 0L, TimeUnit.SECONDS,
+            new ArrayBlockingQueue<Runnable>(N_THREAD),
+            new CustomThreadFactory(THREAD_NAME_PREFIX));
 
     private static final String WAIT_WARNING = "服务器忙，请稍后提交";
     private static final String NO_OUTPUT = "Nothing.";
