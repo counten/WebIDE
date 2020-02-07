@@ -23,13 +23,14 @@ public class JavaClassExecutor {
         ClassModifier cm = new ClassModifier(classByte);
 
         // 3. 调用ClassModifier#modifyUTF8Constant修改
-        cm.modifyUTF8Constant("java/lang/System","cn/codeyourlife/execute/HackSystem");
-        byte[] modifyBytes = cm.modifyUTF8Constant("java/util/Scanner", "cn/codeyourlife/execute/HackScanner");
+        cm.replaceUTF8Constant("java/lang/System","cn/codeyourlife/execute/HackSystem");
+        byte[] modifyBytes = cm.replaceUTF8Constant("java/util/Scanner", "cn/codeyourlife/execute/HackScanner");
 
         // 设置用户传入的标准输入
         ((HackInputStream) HackSystem.in).set(systemIn);
 
-        // 4. new一个类加载器，把字节数组加载为Class对象
+        // 4. new一个类加载器，把字节数组加载为Class对象，
+        // 不同类加载器使得修改代码再提交能被重新加载。
         HotSwapClassLoader classLoader = new HotSwapClassLoader();
         Class clazz = classLoader.loadByte(modifyBytes);
 

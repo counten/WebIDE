@@ -58,6 +58,7 @@ public class ExecuteStringSourceService {
         // 获取运行结果，处理非客户端代码错误
         String runResult;
         try {
+            // 限制程序的执行时间，保证安全
             runResult = res.get(RUN_TIME_LIMITED, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             runResult = "Program interrupted.";

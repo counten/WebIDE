@@ -51,7 +51,7 @@ public class ClassModifier {
      * @param newStr
      * @return 修改后的字节码字节数组
      */
-    public byte[] modifyUTF8Constant(String oldStr, String newStr) {
+    public byte[] replaceUTF8Constant(String oldStr, String newStr) {
         // 获取常量的个数
         int cpc = getConstantPoolCount();
         // 常量池真实的常量起始位置10
